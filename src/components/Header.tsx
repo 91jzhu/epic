@@ -1,28 +1,34 @@
-import {Link} from "react-router-dom";
+import {Link,useLocation} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const Header = () => {
+    const url=useLocation().pathname
     const lineRef=useRef<HTMLDivElement>(null)
     const navRef=useRef<HTMLDivElement>(null)
-    const onClick=(e:any)=>{
-        if(e.target.innerHTML&&lineRef.current){
+    const selected=useRef<HTMLAnchorElement>(null)
+    const toggle=(e:any)=>{
+        if(e.localName==='a'&&lineRef.current){
             const {left:wLeft}=navRef.current!.getBoundingClientRect()
-            const {width,left:eLeft}=e.target.getBoundingClientRect()
+            const {width,left:eLeft}=e.getBoundingClientRect()
             lineRef.current.style.width=width+'px'
             lineRef.current.style.left=(eLeft-wLeft)+'px'
-            console.log(lineRef.current.style.width,lineRef.current.style.left);
         }
     }
+    useEffect(()=>{
+        if(selected.current){
+            toggle(selected.current)
+        }
+    })
     return (
         <Wrapper>
             <Pic><Icon name='cloud'/></Pic>
-            <Nav onClick={onClick} ref={navRef}>
+            <Nav onClick={toggle} ref={navRef}>
                 <div className='line' ref={lineRef}/>
-                <Link to='/'>首页</Link>
-                <Link to='/history'>上传历史</Link>
-                <Link to='/about'>我的</Link>
+                <Link to='/' ref={url==='/'?selected:null}>首页</Link>
+                <Link to='/history' ref={url==='/history'?selected:null}>上传历史</Link>
+                <Link to='/about' ref={url==='/about'?selected:null}>我的</Link>
             </Nav>
             <Info>Github</Info>
         </Wrapper>
@@ -57,6 +63,7 @@ const Nav = styled.div`
     transition: all 250ms linear;
   }
   a {
+    height:100%;
     color: #ffffff;
     font-size: 1.5rem;
     padding:0 48px;
