@@ -2,6 +2,7 @@ import {Link, useLocation} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
 import {useEffect, useRef, useState} from "react";
+import {Button} from 'antd';
 
 const Header = () => {
     const url = useLocation().pathname
@@ -16,6 +17,7 @@ const Header = () => {
             lineRef.current.style.left = (eLeft - wLeft) + 'px'
         }
     }
+    const [login, setLogin] = useState(false)
     useEffect(() => {
         if (selected.current) {
             toggle(selected.current)
@@ -32,8 +34,18 @@ const Header = () => {
                     <Link to='/about' ref={url === '/about' ? selected : null}>我的</Link>
                 </Links>
                 <Buttons>
-                    <Link to='/register'>注册</Link>
-                    <Link to='/login'>登录</Link>
+                    {
+                        login ? <>
+                                <h2>几人古</h2>
+                                <Btn size='large' onClick={()=>setLogin(false)}>注销</Btn>
+                            </> :
+                            <>
+                                <Btn size='large'>注册</Btn>
+                                <Btn size='large' onClick={()=>setLogin(true)}>登录</Btn>
+                            </>
+                    }
+                    {/*<Link to='/register'>注册</Link>*/}
+                    {/*<Link to='/login'>登录</Link>*/}
                 </Buttons>
             </Nav>
             <Info><Icon name='github'/></Info>
@@ -102,15 +114,19 @@ const Buttons = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  a {
-    display: block;
-    text-decoration: none;
-    color:#373756;
-    background: white;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 20px;
-    margin: 0 24px;
-  }
+
+  //a {
+  //  display: block;
+  //  text-decoration: none;
+  //  color:#373756;
+  //  background: white;
+  //  border-radius: 4px;
+  //  padding: 8px 12px;
+  //  font-size: 20px;
+  //  margin: 0 24px;
+  //}
+`
+const Btn = styled(Button)`
+  margin: 0 12px;
 `
 export default Header

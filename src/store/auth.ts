@@ -1,6 +1,9 @@
-import {observable, action, computed} from "mobx";
+import {observable, action, computed, makeObservable} from "mobx";
 
 class AuthStore{
+    constructor() {
+        makeObservable(this)
+    }
     @observable isLogin=false
     @observable isLoading=false
     @observable values={
