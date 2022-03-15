@@ -4,6 +4,7 @@ import {Route, Link, Routes} from 'react-router-dom'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
+import styled from "styled-components";
 
 const Home=lazy(()=>import('./pages/Home'))
 const History=lazy(()=>import('./pages/History'))
@@ -13,7 +14,7 @@ const Register=lazy(()=>import('./pages/Register'))
 
 function App() {
     return (
-        <div>
+        <Wrapper>
             <Header/>
             <Suspense fallback={<Loading/>}>
                 <Routes>
@@ -26,8 +27,16 @@ function App() {
                 </Routes>
             </Suspense>
             <Footer/>
-        </div>
+        </Wrapper>
     );
 }
+const Wrapper=styled.div`
+  display: flex;
+  height:100vh;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 export default App;

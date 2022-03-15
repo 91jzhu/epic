@@ -5,7 +5,9 @@ import reportWebVitals from './reportWebVitals';
 import {
     BrowserRouter as Router,
 } from 'react-router-dom'
+// import Models from "./models";
 
+// console.log(Models);
 ReactDOM.render(
         <Router>
             <App/>

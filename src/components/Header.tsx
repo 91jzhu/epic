@@ -54,6 +54,7 @@ const Header = () => {
 }
 
 const Wrapper = styled.div`
+  width:100vw;
   background: #373756;
   color: #ffffff;
   text-shadow: 1px 1px 1px #a2a2b4;

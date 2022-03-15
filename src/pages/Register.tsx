@@ -34,8 +34,8 @@ const Register = observer(() => {
             <Forms>
                 <Form
                     name="basic"
-                    labelCol={{span: 8}}
-                    wrapperCol={{span: 8}}
+                    labelCol={{span: 6}}
+                    wrapperCol={{span: 15}}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
@@ -68,7 +68,7 @@ const Register = observer(() => {
                         <Input.Password/>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{offset: 11, span: 8}}>
+                    <Form.Item wrapperCol={{offset: 6, span: 15}}>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
@@ -79,15 +79,20 @@ const Register = observer(() => {
     )
 })
 const Wrapper=styled.div`
+  width:100vw;
   border:1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex:1;
 `
 const Forms=styled.div`
-  border:1px solid black;
-  width:50%;
+  box-shadow:1px 1px 1px lightgrey,-1px -1px 1px lightgrey;
+  height:100%;
+  width:40vw;
+  padding:12px;
+  margin-bottom: 12px;
 `
 
 export default Register
