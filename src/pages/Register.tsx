@@ -13,6 +13,21 @@ const Register = observer(() => {
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
+    const validateUserName=(rule:any,value:any)=>{
+        if(!/^[0-9a-zA-Z_]{1,}$/.test(value)){
+            return Promise.reject('只能为数字，字母或下划线')
+        }
+        if(value.length<4||value.length>10){
+            return Promise.reject('长度为 4-10 个字符')
+        }
+        return Promise.resolve()
+    }
+    const validatePassWord=(x:any)=>({
+        validator(rule:any,value:string){
+            if(x.getFieldValue('passwordFirst')===value)return Promise.resolve()
+            return Promise.reject('密码不一致')
+        }
+    })
     return (
         <Wrapper>
             <h1>注册</h1>
@@ -28,7 +43,7 @@ const Register = observer(() => {
                     <Form.Item
                         label="用户名"
                         name="username"
-                        rules={[{required: true, message: '请输入用户名'}]}
+                        rules={[{required: true, message: '请输入用户名'},{validator:validateUserName}]}
                     >
                         <Input/>
                     </Form.Item>
@@ -36,7 +51,11 @@ const Register = observer(() => {
                     <Form.Item
                         label="密码"
                         name="passwordFirst"
-                        rules={[{required: true, message: '请输入密码'}]}
+                        rules={[
+                            {required: true, message: '请输入密码'},
+                            {min:4,message:'最少 5 个字符'},
+                            {max:10,message:'最大 10 个字符'}
+                        ]}
                     >
                         <Input.Password/>
                     </Form.Item>
@@ -44,7 +63,7 @@ const Register = observer(() => {
                     <Form.Item
                         label="确认密码"
                         name="passwordSecond"
-                        rules={[{required: true, message: '请再次输入密码'}]}
+                        rules={[{required: true, message: '请再次输入密码'},validatePassWord]}
                     >
                         <Input.Password/>
                     </Form.Item>

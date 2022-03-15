@@ -87,6 +87,7 @@ const Nav = styled.div`
     color: #ffffff;
     font-size: 1.5rem;
     margin: 0 64px;
+    white-space: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
