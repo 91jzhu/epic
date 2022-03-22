@@ -1,10 +1,12 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation,useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
 import {useEffect, useRef, useState} from "react";
 import {Button} from 'antd';
+import useStores from "../store";
+import {observer} from "mobx-react";
 
-const Header = () => {
+const Header = observer(()=> {
     const url = useLocation().pathname
     const lineRef = useRef<HTMLDivElement>(null)
     const navRef = useRef<HTMLDivElement>(null)
@@ -17,12 +19,25 @@ const Header = () => {
             lineRef.current.style.left = (eLeft - wLeft) + 'px'
         }
     }
-    const [login, setLogin] = useState(false)
+    const {UserStore:{currentUser},AuthStore} = useStores()
     useEffect(() => {
         if (selected.current) {
             toggle(selected.current)
         }
     })
+    const h=useNavigate()
+    const handleLogout=()=>{
+        AuthStore.logOut()
+        h('/login')
+    }
+    const handleRegister=()=>{
+        console.log('跳转到注册页面')
+        h('/register')
+    }
+    const handleLogin=()=>{
+        console.log('跳转至登录页')
+        h('/login')
+    }
     return (
         <Wrapper>
             <Pic><Icon name='cloud'/></Pic>
@@ -35,13 +50,13 @@ const Header = () => {
                 </Links>
                 <Buttons>
                     {
-                        login ? <>
-                                <h2>几人古</h2>
-                                <Btn size='large' onClick={()=>setLogin(false)}>注销</Btn>
+                        currentUser ? <>
+                                <h2>{currentUser['attributes']['username']}</h2>
+                                <Btn size='large' onClick={handleLogout}>注销</Btn>
                             </> :
                             <>
-                                <Btn size='large'>注册</Btn>
-                                <Btn size='large' onClick={()=>setLogin(true)}>登录</Btn>
+                                <Btn size='large' onClick={handleRegister}>注册</Btn>
+                                <Btn size='large' onClick={handleLogin}>登录</Btn>
                             </>
                     }
                     {/*<Link to='/register'>注册</Link>*/}
@@ -51,10 +66,10 @@ const Header = () => {
             <Info><Icon name='github'/></Info>
         </Wrapper>
     )
-}
+})
 
 const Wrapper = styled.div`
-  width:100vw;
+  width: 100vw;
   background: #373756;
   color: #ffffff;
   text-shadow: 1px 1px 1px #a2a2b4;

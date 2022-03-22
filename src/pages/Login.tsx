@@ -1,13 +1,23 @@
 import {observer} from "mobx-react";
 import useStores from "../store";
 import React from "react";
-import {Form, Input, Button, Checkbox} from 'antd';
+import {Form, Input, Button} from 'antd';
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 
 const Login = observer(() => {
     const {AuthStore} = useStores()
+    const h=useNavigate()
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        AuthStore.setUserName(values.username)
+        AuthStore.setPassWord(values.password)
+        AuthStore.login().then(()=>{
+            console.log('登录成功，跳转首页')
+            h('/')
+        },()=>{
+            console.log('登录失败，不动')
+        })
     };
 
     const onFinishFailed = (errorInfo: any) => {

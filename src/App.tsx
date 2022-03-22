@@ -35,7 +35,7 @@ const Wrapper=styled.div`
   height:100vh;
   overflow: hidden;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `
 

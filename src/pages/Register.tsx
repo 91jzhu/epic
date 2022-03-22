@@ -3,11 +3,23 @@ import useStores from "../store";
 import React from "react";
 import {Form, Input, Button, Checkbox} from 'antd';
 import styled from "styled-components";
+import AuthStore from "../store/auth";
+import {useNavigate} from "react-router-dom";
+
 
 const Register = observer(() => {
     const {AuthStore} = useStores()
+    const h=useNavigate()
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        AuthStore.setUserName(values.username)
+        AuthStore.setPassWord(values.passwordSecond)
+        AuthStore.register().then(()=>{
+            console.log('注册成功，跳转首页')
+            h('/')
+        },()=>{
+            console.log('注册失败，不动')
+        })
     };
 
     const onFinishFailed = (errorInfo: any) => {
