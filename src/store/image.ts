@@ -19,10 +19,10 @@ class ImageStore {
         this.file = newFile
     }
 
-    @action upload(file: any, filename: string) {
+    @action upload() {
         return new Promise((resolve,reject)=>{
             this.isLoading = true
-            Uploader.add(file, filename).then((serverFile: any) => {
+            Uploader.add(this.file, this.filename).then((serverFile: any) => {
                 this.serverFile=serverFile
                 resolve(serverFile)
             }).catch(e => {

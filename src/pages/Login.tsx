@@ -9,7 +9,7 @@ const Login = observer(() => {
     const {AuthStore} = useStores()
     const h=useNavigate()
     const onFinish = (values: any) => {
-        console.log('Success:', values);
+        // console.log('Success:', values);
         AuthStore.setUserName(values.username)
         AuthStore.setPassWord(values.password)
         AuthStore.login().then(()=>{

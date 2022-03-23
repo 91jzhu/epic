@@ -1,7 +1,7 @@
 import {Link, useLocation,useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import {Button} from 'antd';
 import useStores from "../store";
 import {observer} from "mobx-react";
@@ -25,17 +25,19 @@ const Header = observer(()=> {
             toggle(selected.current)
         }
     })
+    // console.log(currentUser)
     const h=useNavigate()
     const handleLogout=()=>{
-        AuthStore.logOut()
-        h('/login')
+        AuthStore.logOut().then(()=>{
+            h('/login')
+        })
     }
     const handleRegister=()=>{
-        console.log('跳转到注册页面')
+        // console.log('跳转到注册页面')
         h('/register')
     }
     const handleLogin=()=>{
-        console.log('跳转至登录页')
+        // console.log('跳转至登录页')
         h('/login')
     }
     return (
@@ -93,7 +95,8 @@ const Nav = styled.div`
   .line {
     position: absolute;
     bottom: 4px;
-    height: 4px;
+    height: 6px;
+    border-radius: 24px;
     background: white;
     transition: all 250ms linear;
   }
@@ -130,8 +133,10 @@ const Buttons = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
-
+  h2{
+    text-align: center;
+  }
+  
   //a {
   //  display: block;
   //  text-decoration: none;
