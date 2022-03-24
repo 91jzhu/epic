@@ -23,7 +23,6 @@ const Auth = {
     login(username: string, password: string) {
         return new Promise((resolve, reject) => {
             User.logIn(username, password).then((user) => {
-                // 登录成功
                 resolve(user)
             }, () => {
                 reject('登陆失败')

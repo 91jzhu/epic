@@ -7,7 +7,7 @@ const context=createContext({
     AuthStore,
     UserStore,
     ImageStore
-})
+});
 
 const useStores=()=>useContext(context)
 
