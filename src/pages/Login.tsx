@@ -1,5 +1,5 @@
 import {observer} from "mobx-react";
-import useStores from "../store";
+import {useStores} from "../store";
 import React from "react";
 import {Form, Input, Button} from 'antd';
 import styled from "styled-components";
@@ -34,8 +34,8 @@ const Login = observer(() => {
     }
     return (
         <Wrapper>
-            <h1>登录</h1>
             <Forms>
+                <h2>登录</h2>
                 <Form
                     name="basic"
                     labelCol={{span: 6}}
@@ -75,20 +75,22 @@ const Login = observer(() => {
     )
 })
 const Wrapper=styled.div`
-  width:100vw;
-  border:1px solid red;
+  border:1px dashed #ccc;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex:1;
+  width:900px;
 `
 const Forms=styled.div`
-  box-shadow:1px 1px 1px lightgrey,-1px -1px 1px lightgrey;
-  height:100%;
+  box-shadow:2px 2px 2px lightgrey,-1px -1px 2px lightgrey;
+  height:30vh;
   width:40vw;
   padding:12px;
-  margin-bottom: 12px;
+  h2{
+    text-align: center;
+  }
 `
 
 export default Login

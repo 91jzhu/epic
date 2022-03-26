@@ -1,9 +1,8 @@
 import {observer} from "mobx-react";
-import useStores from "../store";
+import {useStores} from "../store";
 import React from "react";
 import {Form, Input, Button, Checkbox} from 'antd';
 import styled from "styled-components";
-import AuthStore from "../store/auth";
 import {useNavigate} from "react-router-dom";
 
 

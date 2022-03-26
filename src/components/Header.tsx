@@ -1,12 +1,12 @@
-import {Link, useLocation,useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon";
 import {useEffect, useRef} from "react";
 import {Button} from 'antd';
-import useStores from "../store";
+import {useStores} from "../store";
 import {observer} from "mobx-react";
 
-const Header = observer(()=> {
+const Header = observer(() => {
     const url = useLocation().pathname
     const lineRef = useRef<HTMLDivElement>(null)
     const navRef = useRef<HTMLDivElement>(null)
@@ -19,24 +19,26 @@ const Header = observer(()=> {
             lineRef.current.style.left = (eLeft - wLeft) + 'px'
         }
     }
-    const {UserStore:{currentUser},AuthStore} = useStores()
+    const {UserStore, AuthStore} = useStores()
     useEffect(() => {
         if (selected.current) {
             toggle(selected.current)
         }
     })
-    // console.log(currentUser)
-    const h=useNavigate()
-    const handleLogout=()=>{
-        AuthStore.logOut().then(()=>{
+    useEffect(() => {
+        UserStore.pullUser();
+    }, [])
+    const h = useNavigate()
+    const handleLogout = () => {
+        AuthStore.logOut().then(() => {
             h('/login')
         })
     }
-    const handleRegister=()=>{
+    const handleRegister = () => {
         // console.log('跳转到注册页面')
         h('/register')
     }
-    const handleLogin=()=>{
+    const handleLogin = () => {
         // console.log('跳转至登录页')
         h('/login')
     }
@@ -52,8 +54,8 @@ const Header = observer(()=> {
                 </Links>
                 <Buttons>
                     {
-                        currentUser ? <>
-                                <h2>{currentUser['attributes']['username']}</h2>
+                        UserStore.currentUser ? <>
+                                <div>你好，{UserStore.currentUser['attributes']['username']}</div>
                                 <Btn size='large' onClick={handleLogout}>注销</Btn>
                             </> :
                             <>
@@ -69,16 +71,18 @@ const Header = observer(()=> {
         </Wrapper>
     )
 })
-
 const Wrapper = styled.div`
   width: 100vw;
   background: #373756;
-  color: #ffffff;
+  color: #ffffff; 
   text-shadow: 1px 1px 1px #a2a2b4;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  padding: 12px 0;
+  position: sticky;
+  top:0;
+  z-index: 1;
 `
 const Pic = styled.div`
   padding: 0 64px;
@@ -94,7 +98,7 @@ const Nav = styled.div`
 
   .line {
     position: absolute;
-    bottom: 4px;
+    bottom: -6px;
     height: 6px;
     border-radius: 24px;
     background: white;
@@ -113,7 +117,6 @@ const Nav = styled.div`
   }
 `
 const Info = styled.div`
-  //border: 1px solid white;
   height: 100%;
   padding: 0 64px;
   font-size: 1.5rem;
@@ -122,33 +125,24 @@ const Info = styled.div`
   align-items: center;
 `
 const Links = styled.div`
-  //border: 1px solid white;
   display: flex;
   align-items: center;
   height: 100%;
 `
 const Buttons = styled.div`
-  //border: 1px solid white;
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  h2{
-    text-align: center;
+
+  div {
+    font-size: 24px;
   }
-  
-  //a {
-  //  display: block;
-  //  text-decoration: none;
-  //  color:#373756;
-  //  background: white;
-  //  border-radius: 4px;
-  //  padding: 8px 12px;
-  //  font-size: 20px;
-  //  margin: 0 24px;
-  //}
 `
 const Btn = styled(Button)`
   margin: 0 12px;
 `
+
 export default Header
+
+

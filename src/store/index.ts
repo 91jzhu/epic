@@ -9,6 +9,4 @@ const context=createContext({
     ImageStore
 });
 
-const useStores=()=>useContext(context)
-
-export default useStores
+export const useStores=()=>useContext(context)

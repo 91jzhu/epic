@@ -33,10 +33,14 @@ function App() {
 const Wrapper=styled.div`
   display: flex;
   height:100vh;
-  overflow: hidden;
-  flex-direction: column;
+  width:100vw;
+  overflow-x:hidden;
+  overflow-y:auto;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
-
 export default App;

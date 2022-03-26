@@ -1,4 +1,4 @@
-import useStores from "../store";
+import {useStores} from "../store";
 import {observer} from "mobx-react";
 import styled from "styled-components";
 
@@ -12,6 +12,7 @@ const Tips = observer(({children}: { children: any }) => {
     )
 })
 const Wrapper=styled.div`
+  height:100%;
   border:1px solid red;
   width:100vw;
   display: flex;

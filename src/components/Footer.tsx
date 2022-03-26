@@ -10,6 +10,8 @@ const Footer=()=>{
 const Wrapper=styled.div`
   border:1px solid red;
   width:100vw;
-  height:120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 export default Footer
