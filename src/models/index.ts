@@ -45,7 +45,7 @@ const Uploader={
     add(file:any,filename:string){
         return new Promise((resolve,reject)=>{
             const item:any=new AV.Object('Image')
-            const avFile = new AV.File(filename, file);
+            const avFile = new AV.File(filename, file)
             item.set('filename',filename)
             item.set('owner',AV.User.current())
             item.set('url',avFile)
@@ -54,6 +54,21 @@ const Uploader={
             }, (e:any) =>{
                 reject(JSON.stringify(e))
             });
+        })
+    },
+    find(page=0,limit=10){
+        return new Promise(resolve=>{
+            const query = new AV.Query('Image')
+            query.limit(limit)
+            query.skip(page*limit)
+            query.descending('createdAt')
+            query.equalTo('owner', AV.User.current())
+            query.find().then((results) => {
+                console.log(results)
+                resolve(results)
+            });
+        }).catch(e=>{
+            console.log(e)
         })
     }
 }

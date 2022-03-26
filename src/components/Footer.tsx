@@ -8,7 +8,10 @@ const Footer=()=>{
     )
 }
 const Wrapper=styled.div`
-  border:1px solid red;
+  h2{
+    color:grey;
+  }
+  padding:12px 0;
   width:100vw;
   display: flex;
   justify-content: center;

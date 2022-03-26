@@ -84,7 +84,7 @@ const Wrapper=styled.div`
   width:900px;
 `
 const Forms=styled.div`
-  box-shadow:2px 2px 2px lightgrey,-1px -1px 2px lightgrey;
+  box-shadow:2px 2px 2px lightgrey,-1px -1px 1px lightgrey;
   height:30vh;
   width:40vw;
   padding:12px;
