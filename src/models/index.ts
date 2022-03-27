@@ -56,7 +56,7 @@ const Uploader={
             });
         })
     },
-    find(page=0,limit=10){
+    find(page=0,limit:number){
         return new Promise(resolve=>{
             const query = new AV.Query('Image')
             query.limit(limit)
@@ -64,7 +64,6 @@ const Uploader={
             query.descending('createdAt')
             query.equalTo('owner', AV.User.current())
             query.find().then((results) => {
-                console.log(results)
                 resolve(results)
             });
         }).catch(e=>{

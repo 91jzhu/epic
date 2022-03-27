@@ -10,5 +10,6 @@ const context=createContext({
     ImageStore,
     HistoryStore
 });
+(window as any).store=HistoryStore.historyList
 
 export const useStores=()=>useContext(context)

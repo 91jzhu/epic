@@ -31,16 +31,16 @@ function App() {
     );
 }
 const Wrapper=styled.div`
-  display: flex;
-  height:100vh;
+  min-height:100vh;
+  overflow-y: auto;
   width:100vw;
-  overflow-x:hidden;
-  overflow-y:auto;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
+  overflow-x: hidden;
   ::-webkit-scrollbar {
     display: none;
   }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 export default App;

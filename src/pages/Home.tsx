@@ -14,8 +14,11 @@ const Home = observer(() => {
 })
 const Wrapper = styled.div`
   flex:1;
+  //border:5px solid blue;
   display: flex;
   flex-direction: column;
-  width:900px;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
 `
 export default Home

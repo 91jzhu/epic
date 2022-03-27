@@ -75,14 +75,11 @@ const Wrapper = styled.div`
   width: 100vw;
   background: #373756;
   color: #ffffff; 
+  padding:12px 0;
   text-shadow: 1px 1px 1px #a2a2b4;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  position: sticky;
-  top:0;
-  z-index: 1;
 `
 const Pic = styled.div`
   padding: 0 64px;
@@ -109,7 +106,7 @@ const Nav = styled.div`
     height: 100%;
     color: #ffffff;
     font-size: 1.5rem;
-    margin: 0 64px;
+    margin: 0 48px;
     white-space: nowrap;
     display: flex;
     justify-content: center;

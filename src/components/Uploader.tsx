@@ -1,5 +1,5 @@
 import {useStores} from "../store";
-import {observer, useLocalStore} from "mobx-react";
+import {observer, useLocalObservable} from "mobx-react";
 import {Alert, message, Spin, Upload} from "antd";
 import {InboxOutlined} from '@ant-design/icons';
 import styled from "styled-components";
@@ -8,7 +8,7 @@ const {Dragger} = Upload;
 
 const Uploader = observer(() => {
     const {ImageStore, UserStore} = useStores()
-    const store = useLocalStore(() => ({
+    const store = useLocalObservable(() => ({
         width: null,
         height: null,
         get widthStr() {
@@ -18,7 +18,7 @@ const Uploader = observer(() => {
             return store.height ? `/h/${store.height}` : ""
         },
         get fullStr() {
-            return (ImageStore.serverFile as any).attributes.url.attributes.url + '/?imageView' + store.widthStr + store.heightStr
+            return (ImageStore.serverFile as any).attributes.url.attributes.url + '?imageView2/0' + store.widthStr + store.heightStr
         }
     }))
     const props = {
@@ -96,7 +96,7 @@ const Uploader = observer(() => {
     )
 })
 const Wrapper = styled.div`
-  border: 1px dashed #ccc;
+  //border: 1px dashed #ccc;
   padding: 24px;
   width: 900px;
   flex:1;

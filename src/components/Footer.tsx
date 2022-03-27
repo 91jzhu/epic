@@ -11,10 +11,11 @@ const Wrapper=styled.div`
   h2{
     color:grey;
   }
-  padding:12px 0;
+  border:1px solid red;
   width:100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding:18px 0;
 `
 export default Footer

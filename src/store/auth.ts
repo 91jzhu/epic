@@ -1,7 +1,9 @@
 import {observable, action, makeObservable} from "mobx";
 import {Auth} from "../models";
 import UserStore from './user'
+import ImageStore from './image'
 import {message} from "antd";
+import HistoryStore from './history'
 
 class AuthStore {
     constructor() {
@@ -60,6 +62,8 @@ class AuthStore {
             Auth.logout().then((info) => {
                 resolve(info)
                 UserStore.resetUser()
+                HistoryStore.reset()
+                ImageStore.reset()
             }, () => reject())
         })
     }
