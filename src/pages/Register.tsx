@@ -41,8 +41,8 @@ const Register = observer(() => {
     })
     return (
         <Wrapper>
-            <h1>注册</h1>
             <Forms>
+                <h2>注册</h2>
                 <Form
                     name="basic"
                     labelCol={{span: 6}}
@@ -104,6 +104,9 @@ const Forms=styled.div`
   width:40vw;
   padding:12px;
   margin-bottom: 12px;
+  h2{
+    text-align: center;
+  }
 `
 
 export default Register

@@ -1,9 +1,8 @@
 import {useStores} from "../store";
 import styled from "styled-components";
-import React, {forwardRef, useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import {observer} from "mobx-react";
-import VirtualList from 'rc-virtual-list';
-import {Avatar, Divider, List, message, Skeleton, Spin} from 'antd';
+import {Divider, List,Skeleton} from 'antd';
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Clist = observer(() => {
@@ -54,38 +53,6 @@ const Clist = observer(() => {
                     )}
                 />
             </InfiniteScroll>
-            {/*}*/}
-            {/*<List>*/}
-            {/*    <VirtualList*/}
-            {/*        data={HistoryStore.historyList}*/}
-            {/*        itemHeight={20}*/}
-            {/*        itemKey='id'*/}
-            {/*        height={400}*/}
-            {/*        onScroll={onScroll}*/}
-            {/*    >*/}
-            {/*        {(item: any) => (*/}
-            {/*            <List.Item key={item.id}>*/}
-            {/*                <Item key={item.id}>*/}
-            {/*                    <Div>*/}
-            {/*                        <div>*/}
-            {/*                            <Img src={item?.attributes.url?.attributes.url}*/}
-            {/*                                 alt={item?.attributes.url?.attributes.url}*/}
-            {/*                                 style={{width: '100px'}}/>*/}
-            {/*                        </div>*/}
-            {/*                        <div>*/}
-            {/*                            <H5>{item.attributes.filename}</H5>*/}
-            {/*                        </div>*/}
-            {/*                    </Div>*/}
-            {/*                    <div>*/}
-            {/*                        <a target='_blank'*/}
-            {/*                           href={item.attributes.url?.attributes.url}>*/}
-            {/*                            {item.attributes.url?.attributes.url}</a>*/}
-            {/*                    </div>*/}
-            {/*                </Item>*/}
-            {/*            </List.Item>*/}
-            {/*        )}*/}
-            {/*    </VirtualList>*/}
-            {/*</List>*/}
         </Wrapper>
     )
 })
